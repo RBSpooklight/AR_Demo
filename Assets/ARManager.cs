@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Vuforia;
 
-public sealed class ARManager : MonoBehaviour {
-	
+//TODO: implement Singleton after merge
+public sealed class ARManager : MonoBehaviour 
+{	
 	private enum EPlacementMode
 	{
 		Ground,
@@ -81,7 +81,7 @@ public sealed class ARManager : MonoBehaviour {
 	}
 	#endregion
 	
-	#region PUBLIC_BUTTON_METHODS
+	#region PUBLIC_UI_METHODS
 	public void SetGroundMode()
     {
 		m_placementMode = EPlacementMode.Ground;
@@ -157,6 +157,9 @@ public sealed class ARManager : MonoBehaviour {
 		{
 			if (!m_positionalDeviceTracker.IsActive)
 				m_positionalDeviceTracker.Start();
+
+			if (m_positionalDeviceTracker.IsActive && !m_smartTerrain.IsActive)
+				m_smartTerrain.Start();
 		}
 	}
 	#endregion
