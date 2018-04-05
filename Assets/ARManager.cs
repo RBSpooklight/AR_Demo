@@ -24,6 +24,10 @@ public sealed class ARManager : MonoBehaviour
 	
 	[SerializeField] private CanvasGroup m_screenReticleGround;
 	
+	//TODO: Remove, debug purposes
+	[SerializeField] private UnityEngine.UI.Image m_positionalDeviceTrackerStatus;
+	[SerializeField] private UnityEngine.UI.Image m_smartTerrainStatus;
+	
 	private StateManager m_stateManager;
 
 	private EPlacementMode m_placementMode;
@@ -50,6 +54,20 @@ public sealed class ARManager : MonoBehaviour
 		m_mainCamera = Camera.main;
 		m_planeFinder.HitTestMode = HitTestMode.AUTOMATIC;
 		m_placementMode = EPlacementMode.Ground;
+	}
+
+	//TODO: Remove, debug purposes
+	private void Update()
+	{
+		m_positionalDeviceTrackerStatus.color = Color.red;
+		m_smartTerrainStatus.color = Color.red;
+		
+		if (m_positionalDeviceTracker.IsActive)
+			m_positionalDeviceTrackerStatus.color = Color.green;
+		
+		if (m_smartTerrain.IsActive)
+			m_smartTerrainStatus.color = Color.green;
+			
 	}
 	
 	private void LateUpdate()
