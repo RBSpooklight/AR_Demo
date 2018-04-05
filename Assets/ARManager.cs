@@ -101,7 +101,10 @@ public sealed class ARManager : MonoBehaviour
 	
 	#region PUBLIC_UI_METHODS
 	public void SetGroundMode()
-    {
+	{
+		if (m_placementMode == EPlacementMode.Ground)
+			return;
+	    
 		m_placementMode = EPlacementMode.Ground;
 		m_planeFinder.gameObject.SetActive(true);
 		m_midAirPositioner.gameObject.SetActive(false);
@@ -109,6 +112,9 @@ public sealed class ARManager : MonoBehaviour
 
     public void SetMidAirMode()
     {
+	    if (m_placementMode == EPlacementMode.MidAir)
+		    return;
+	    
 		m_placementMode = EPlacementMode.MidAir;
 		m_planeFinder.gameObject.SetActive(false);
 		m_midAirPositioner.gameObject.SetActive(true);
